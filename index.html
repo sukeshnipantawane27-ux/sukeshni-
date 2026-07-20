@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body,
         html {
             width: 100%;
@@ -21,6 +23,7 @@
             align-items: center;
             background: linear-gradient(135deg, #0B1325 0%, #1a1f3a 100%);
         }
+
         /* Background Ambient Video Layer */
         #bg-video {
             position: absolute;
@@ -33,6 +36,7 @@
             filter: brightness(0.35) saturate(0.8);
             opacity: 0.8;
         }
+
         /* Fallback background when video unavailable */
         .bg-fallback {
             position: absolute;
@@ -44,6 +48,7 @@
             z-index: 1;
             display: none;
         }
+
         /* Envelope Styles */
         #envelope-container {
             position: absolute;
@@ -57,6 +62,7 @@
             transition: opacity 1s ease;
             backdrop-filter: blur(5px);
         }
+
         .envelope {
             background: linear-gradient(135deg, #1C2A4A 0%, #24375E 100%);
             width: 300px;
@@ -68,10 +74,12 @@
             position: relative;
             transition: transform 0.5s, box-shadow 0.5s;
         }
+
         .envelope:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.15);
         }
+
         .envelope-flap {
             position: absolute;
             top: 0;
@@ -84,9 +92,11 @@
             transition: transform 0.6s ease;
             cursor: pointer;
         }
+
         .envelope-flap.open {
             transform: rotateX(180deg);
         }
+
         .tap-text {
             position: absolute;
             width: 100%;
@@ -97,15 +107,19 @@
             letter-spacing: 1px;
             animation: float 2s infinite;
         }
+
         @keyframes float {
+
             0%,
             100% {
                 transform: translateY(0px);
             }
+
             50% {
                 transform: translateY(-5px);
             }
         }
+
         /* Invitation Card Main Container */
         #invite-card {
             position: relative;
@@ -124,25 +138,31 @@
             border: 2px solid #d4af37;
             color: #f5f5f5;
         }
+
         #invite-card.show {
             transform: translateY(0);
         }
+
         /* Custom Royal Gold Scrollbar */
         #invite-card::-webkit-scrollbar {
             width: 6px;
         }
+
         #invite-card::-webkit-scrollbar-track {
             background: rgba(212, 175, 55, 0.1);
             border-radius: 10px;
         }
+
         #invite-card::-webkit-scrollbar-thumb {
             background: #d4af37;
             border-radius: 10px;
             transition: background 0.3s ease;
         }
+
         #invite-card::-webkit-scrollbar-thumb:hover {
             background: #f3e5ab;
         }
+
         h1 {
             color: #d4af37;
             margin: 10px 0;
@@ -151,6 +171,7 @@
             text-transform: uppercase;
             font-weight: 300;
         }
+
         h2 {
             color: #cbd5e1;
             font-size: 16px;
@@ -159,12 +180,14 @@
             text-transform: uppercase;
             font-weight: 400;
         }
+
         p {
             color: #cbd5e1;
             line-height: 1.6;
             font-size: 14px;
             margin: 8px 0;
         }
+
         .names {
             font-size: 36px;
             font-weight: 300;
@@ -173,17 +196,20 @@
             text-shadow: 0px 2px 8px rgba(212, 175, 55, 0.3);
             letter-spacing: 1.5px;
         }
+
         .divider {
             width: 60px;
             height: 2px;
             background: linear-gradient(90deg, transparent, #d4af37, transparent);
             margin: 15px auto;
         }
+
         /* Multi-Event Itinerary Timeline Styles */
         .timeline-container {
             margin-top: 30px;
             text-align: left;
         }
+
         .timeline-title {
             font-size: 14px;
             color: #d4af37;
@@ -193,6 +219,7 @@
             margin-bottom: 20px;
             font-weight: 600;
         }
+
         .event-card {
             background: rgba(28, 42, 74, 0.5);
             border-left: 4px solid #d4af37;
@@ -202,35 +229,42 @@
             transition: all 0.3s ease;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
+
         .event-card:hover {
             background: rgba(28, 42, 74, 0.7);
             transform: translateX(5px);
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
         }
+
         .event-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 6px;
         }
+
         .event-name {
             font-size: 16px;
             font-weight: 600;
             color: #ffffff;
         }
+
         .event-icon {
             font-size: 20px;
         }
+
         .event-time {
             font-size: 12px;
             color: #d4af37;
             font-weight: 600;
             margin-bottom: 4px;
         }
+
         .event-venue {
             font-size: 13px;
             color: #94a3b8;
         }
+
         /* Countdown Block Styling */
         .countdown-container {
             margin-top: 30px;
@@ -241,6 +275,7 @@
             border: 2px solid rgba(212, 175, 55, 0.4);
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.1);
         }
+
         .countdown-title {
             font-size: 11px;
             color: #d4af37;
@@ -249,11 +284,13 @@
             margin-bottom: 12px;
             font-weight: 600;
         }
+
         .timer {
             display: flex;
             justify-content: space-around;
             gap: 8px;
         }
+
         .time-box {
             flex: 1;
             font-size: 16px;
@@ -265,10 +302,12 @@
             border: 1px solid rgba(212, 175, 55, 0.2);
             transition: all 0.3s ease;
         }
+
         .time-box:hover {
             border: 1px solid rgba(212, 175, 55, 0.5);
             background: rgba(212, 175, 55, 0.1);
         }
+
         .time-box span {
             display: block;
             font-size: 10px;
@@ -276,6 +315,7 @@
             font-weight: normal;
             margin-top: 3px;
         }
+
         /* Action Call Controls layout */
         .btn-container {
             display: flex;
@@ -284,6 +324,7 @@
             margin-top: 30px;
             flex-wrap: wrap;
         }
+
         .btn {
             flex: 1;
             min-width: 140px;
@@ -304,24 +345,29 @@
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
+
         .rsvp-btn {
             background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 100%);
             animation: pulse 2s infinite;
         }
+
         .rsvp-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
         }
+
         .map-btn {
             background-color: transparent;
             color: #d4af37;
             border: 2px solid #d4af37;
         }
+
         .map-btn:hover {
             background-color: rgba(212, 175, 55, 0.15);
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
         }
+
         /* Floating Music Control Button Toggle */
         #music-control {
             position: absolute;
@@ -342,10 +388,12 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
         }
+
         #music-control:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
         }
+
         /* RSVP Form Styles */
         .rsvp-section {
             margin-top: 30px;
@@ -355,6 +403,7 @@
             border-radius: 8px;
             text-align: left;
         }
+
         .rsvp-title {
             font-size: 16px;
             color: #d4af37;
@@ -364,6 +413,7 @@
             margin-bottom: 15px;
             font-weight: 600;
         }
+
         .rsvp-info {
             font-size: 13px;
             color: #cbd5e1;
@@ -371,9 +421,11 @@
             text-align: center;
             line-height: 1.6;
         }
+
         .form-group {
             margin-bottom: 12px;
         }
+
         .form-label {
             display: block;
             font-size: 12px;
@@ -383,6 +435,7 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
+
         .form-input,
         .form-select,
         .form-textarea {
@@ -397,6 +450,7 @@
             transition: all 0.3s ease;
             box-sizing: border-box;
         }
+
         .form-input:focus,
         .form-select:focus,
         .form-textarea:focus {
@@ -405,21 +459,25 @@
             background: rgba(11, 19, 37, 0.8);
             box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
         }
+
         .form-textarea {
             resize: vertical;
             min-height: 60px;
         }
+
         .form-group-inline {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
         }
+
         .rsvp-buttons {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-top: 15px;
         }
+
         .rsvp-submit-btn {
             padding: 10px 16px;
             background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 100%);
@@ -433,10 +491,12 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
+
         .rsvp-submit-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
         }
+
         .rsvp-reset-btn {
             padding: 10px 16px;
             background: transparent;
@@ -450,10 +510,12 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
+
         .rsvp-reset-btn:hover {
             background: rgba(212, 175, 55, 0.1);
             transform: translateY(-2px);
         }
+
         .deadline-notice {
             margin-top: 12px;
             padding: 10px;
@@ -464,11 +526,13 @@
             color: #d4af37;
             text-align: center;
         }
+
         .form-checkbox-group {
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
+
         .checkbox-item {
             display: flex;
             align-items: center;
@@ -476,12 +540,104 @@
             font-size: 12px;
             color: #cbd5e1;
         }
+
         .checkbox-item input[type="checkbox"] {
             width: 14px;
             height: 14px;
             cursor: pointer;
             accent-color: #d4af37;
         }
+
+        /* Suggested Songs Section */
+        .songs-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(28, 42, 74, 0.4), rgba(36, 55, 94, 0.4));
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .songs-title {
+            font-size: 16px;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .songs-subtitle {
+            font-size: 12px;
+            color: #cbd5e1;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .songs-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .song-item {
+            background: rgba(11, 19, 37, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 6px;
+            padding: 10px 12px;
+            font-size: 12px;
+            color: #cbd5e1;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .song-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            transform: translateY(-2px);
+        }
+
+        .song-name {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .song-artist {
+            font-size: 11px;
+            color: #94a3b8;
+        }
+
+        .refresh-songs-btn {
+            padding: 10px 16px;
+            background: transparent;
+            color: #d4af37;
+            border: 1px solid #d4af37;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .refresh-songs-btn:hover {
+            background: rgba(212, 175, 55, 0.15);
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 600px) {
+            .songs-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Footer Info */
         .footer {
             margin-top: 25px;
@@ -490,24 +646,29 @@
             font-size: 12px;
             color: #94a3b8;
         }
+
         .footer-text {
             margin: 5px 0;
             line-height: 1.5;
         }
+
         @keyframes pulse {
             0% {
                 transform: scale(1);
                 box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
             }
+
             50% {
                 transform: scale(1.05);
                 box-shadow: 0 6px 22px rgba(212, 175, 55, 0.6);
             }
+
             100% {
                 transform: scale(1);
                 box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
             }
         }
+
         /* Responsive Design */
         @media (max-width: 600px) {
             #invite-card {
@@ -516,27 +677,34 @@
                 padding: 20px 15px;
                 max-height: 90vh;
             }
+
             .names {
                 font-size: 28px;
             }
+
             h1 {
                 font-size: 24px;
             }
+
             .timer {
                 gap: 4px;
             }
+
             .time-box {
                 font-size: 14px;
             }
+
             .btn {
                 min-width: 120px;
                 padding: 12px 14px;
                 font-size: 13px;
             }
+
             .envelope {
                 width: 250px;
                 height: 170px;
             }
+
             .envelope-flap {
                 border-left: 125px solid transparent;
                 border-right: 125px solid transparent;
@@ -545,21 +713,26 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Background Fallback Gradient -->
     <div class="bg-fallback"></div>
+
     <!-- Background Ambient Video System -->
     <video autoplay muted loop id="bg-video" onerror="document.querySelector('.bg-fallback').style.display='block'">
         <source src="media/background-video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+
     <!-- Background Audio Stream Element -->
     <audio id="bg-music" loop preload="none">
         <source src="media/background-music.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+
     <!-- Music State Trigger Button Toggle -->
     <button id="music-control" onclick="toggleMusic()" title="Toggle Music">🔊</button>
+
     <!-- Interactive Envelope Trigger Overlay Layer -->
     <div id="envelope-container" onclick="openEnvelope()">
         <div class="envelope">
@@ -567,16 +740,23 @@
             <div class="tap-text">Tap to Open</div>
         </div>
     </div>
+
     <!-- Main Multi-Event Card Deck Frame -->
     <div id="invite-card">
         <h1>🎉 Wedding Invitation 🎉</h1>
         <p>We joyfully invite you to celebrate the wedding ceremonies of</p>
+
         <div class="names">Amit & Sneha</div>
+
         <div class="divider"></div>
-        <p>Please join us to bless the couple on these auspicious days filled with joy, celebration, and togetherness.</p>
+
+        <p>Please join us to bless the couple on these auspicious days filled with joy, celebration, and togetherness.
+        </p>
+
         <!-- Itinerary Schedule Stream Track -->
         <div class="timeline-container">
             <div class="timeline-title">✨ Wedding Program ✨</div>
+
             <!-- Sangeet Event Card -->
             <div class="event-card">
                 <div class="event-header">
@@ -586,6 +766,7 @@
                 <div class="event-time">Friday, Dec 11, 2026 • 6:30 PM</div>
                 <div class="event-venue">📍 Crystal Ballroom, Grand Palace, Ramtek</div>
             </div>
+
             <!-- Shadi Event Card -->
             <div class="event-card">
                 <div class="event-header">
@@ -595,6 +776,7 @@
                 <div class="event-time">Sunday, Dec 13, 2026 • 7:00 PM</div>
                 <div class="event-venue">📍 Royal Lawn, Grand Palace, Ramtek</div>
             </div>
+
             <!-- Reception Event Card -->
             <div class="event-card">
                 <div class="event-header">
@@ -605,6 +787,7 @@
                 <div class="event-venue">📍 Main Pavilion, Grand Palace, Ramtek</div>
             </div>
         </div>
+
         <!-- Countdown Timer Engine Output UI -->
         <div class="countdown-container">
             <div class="countdown-title">⏳ Days Remaining Until Wedding</div>
@@ -615,17 +798,19 @@
                 <div class="time-box"><span id="seconds">00</span>Sec</div>
             </div>
         </div>
+
         <!-- RSVP Form Section -->
         <div class="rsvp-section">
             <div class="rsvp-title">📋 RSVP Details</div>
             <div class="rsvp-info">Please fill in your details to confirm your attendance</div>
-            
+
             <form id="rsvpForm">
                 <!-- Name Field -->
                 <div class="form-group">
                     <label class="form-label">Your Name *</label>
                     <input type="text" class="form-input" placeholder="Enter your full name" required>
                 </div>
+
                 <!-- Email and Phone in one row -->
                 <div class="form-group-inline">
                     <div class="form-group">
@@ -637,6 +822,7 @@
                         <input type="tel" class="form-input" placeholder="+91-XXXXXXXXXX" required>
                     </div>
                 </div>
+
                 <!-- Number of Guests -->
                 <div class="form-group">
                     <label class="form-label">Number of Guests Attending *</label>
@@ -650,6 +836,7 @@
                         <option value="6">6+ Guests (Please specify)</option>
                     </select>
                 </div>
+
                 <!-- Attendance Confirmation -->
                 <div class="form-group">
                     <label class="form-label">Will you attend? *</label>
@@ -668,6 +855,7 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Diet Preferences -->
                 <div class="form-group">
                     <label class="form-label">Diet Preferences</label>
@@ -690,30 +878,45 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Special Requests / Allergies -->
                 <div class="form-group">
                     <label class="form-label">Special Requests / Allergies</label>
-                    <textarea class="form-textarea" placeholder="Any dietary restrictions, allergies, or special requirements..."></textarea>
+                    <textarea class="form-textarea"
+                        placeholder="Any dietary restrictions, allergies, or special requirements..."></textarea>
                 </div>
+
                 <!-- Song Requests -->
                 <div class="form-group">
                     <label class="form-label">Song Requests (Optional)</label>
                     <textarea class="form-textarea" placeholder="Your favorite songs for the celebration..."></textarea>
                 </div>
+
                 <!-- Buttons -->
                 <div class="rsvp-buttons">
                     <button type="submit" class="rsvp-submit-btn">Submit RSVP</button>
                     <button type="reset" class="rsvp-reset-btn">Clear Form</button>
                 </div>
+
                 <div class="deadline-notice">
                     ⏰ Please respond by: December 5, 2026
                 </div>
             </form>
         </div>
+
         <!-- Map Button -->
         <div class="btn-container">
             <a href="https://maps.google.com/?q=Grand+Palace+Ramtek" target="_blank" class="btn map-btn">📍 VIEW MAP</a>
         </div>
+
+        <!-- Suggested Songs Section -->
+        <div class="songs-section">
+            <div class="songs-title">🎵 Popular Wedding Songs 🎵</div>
+            <div class="songs-subtitle">Feel free to request any of these songs!</div>
+            <div id="songsList" class="songs-list"></div>
+            <button id="refreshSongsBtn" class="refresh-songs-btn">🔄 Show Different Songs</button>
+        </div>
+
         <!-- Footer Section -->
         <div class="footer">
             <div class="footer-text">📧 For inquiries: amit.wedding2026@example.com</div>
@@ -723,21 +926,23 @@
             </div>
         </div>
     </div>
+
     <script>
         const music = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-control');
         let isPlaying = false;
+
         function openEnvelope() {
             // Add open class to envelope flap
             document.getElementById('flap').classList.add('open');
-            
+
             // Attempt to play music
             music.play().catch(error => {
                 console.log("Audio autoplay prevented. User interaction required for audio.");
                 musicBtn.style.opacity = '0.6';
             });
             isPlaying = true;
-            
+
             // Hide envelope and show invite card
             setTimeout(() => {
                 document.getElementById('envelope-container').style.opacity = '0';
@@ -748,6 +953,7 @@
                 }, 500);
             }, 600);
         }
+
         function toggleMusic() {
             if (music.paused) {
                 music.play().catch(error => {
@@ -761,39 +967,43 @@
                 isPlaying = false;
             }
         }
+
         // High Resolution Main Wedding Event Countdown Engine Loop
         const targetDate = new Date("December 13, 2026 19:00:00").getTime();
-        
+
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = targetDate - now;
-            
+
             if (distance <= 0) {
                 document.querySelector(".countdown-container").innerHTML = "<div class='countdown-title'>✨ The Celebration has Begun! ✨</div><p style='color: #d4af37; margin-top: 10px;'>Thank you for being part of our special day!</p>";
                 return;
             }
-            
+
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
+
             document.getElementById("days").innerText = days.toString().padStart(2, '0');
             document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
             document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
             document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
         }
+
         // Update countdown immediately and then every second
         updateCountdown();
         setInterval(updateCountdown, 1000);
+
         // Handle background video error fallback
-        document.getElementById('bg-video').addEventListener('error', function() {
+        document.getElementById('bg-video').addEventListener('error', function () {
             document.querySelector('.bg-fallback').style.display = 'block';
         });
+
         // RSVP Form Handler
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+        document.getElementById('rsvpForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             // Collect form data
             const formData = new FormData(this);
             const rsvpData = {
@@ -807,15 +1017,125 @@
                 songRequests: this.querySelectorAll('textarea')[1].value,
                 timestamp: new Date().toLocaleString()
             };
+
             // Show success message
             alert('✅ Thank you for your RSVP!\n\nName: ' + rsvpData.name + '\nAttendance: ' + rsvpData.attendance.toUpperCase() + '\n\nWe look forward to celebrating with you!');
+
             // Log the data (in a real application, this would be sent to a server)
             console.log('RSVP Data:', rsvpData);
+
             // Optional: Store in localStorage for reference
             localStorage.setItem('weddingRSVP_' + rsvpData.name, JSON.stringify(rsvpData));
+
             // Reset form after submission
             this.reset();
         });
+
+        // ============================================
+        // RANDOM SONGS FEATURE
+        // ============================================
+
+        // Comprehensive list of popular wedding songs
+        const weddingSongs = [
+            { name: "Tum Hi Ho", artist: "Arijit Singh" },
+            { name: "Ae Dil Hai Mushkil", artist: "Ranbir & Anushka" },
+            { name: "Goofy Punching Bag", artist: "Bollywood Hits" },
+            { name: "Ek Duje Ke Liye", artist: "ATB" },
+            { name: "Pehla Nasha", artist: "Udit Narayan" },
+            { name: "Jaane Jaan", artist: "A. R. Rahman" },
+            { name: "Tere Liye", artist: "A. R. Rahman" },
+            { name: "Aashiqui 2 Title Track", artist: "Arijit Singh" },
+            { name: "Raabta", artist: "Agent Vinod" },
+            { name: "Baarish Ban Jaana", artist: "Payal Dev" },
+            { name: "Mere Liye", artist: "Javed Ali" },
+            { name: "Phoolon Ka Taro", artist: "Instrumental" },
+            { name: "Dil Mein Ho Tum", artist: "Jubin Nautiyal" },
+            { name: "Tum Se", artist: "Mohit Chauhan" },
+            { name: "Aa Bhi Jao", artist: "Sweetest Love Song" },
+            { name: "Neend Churai Meri", artist: "Bollywood Classic" },
+            { name: "Chandni O Chandni", artist: "Romantic Song" },
+            { name: "Dil Diyan Gallan", artist: "Atif Aslam" },
+            { name: "Ae Mere Humsafar", artist: "A. R. Rahman" },
+            { name: "Sunn Raha Hai", artist: "Shreya Ghoshal" }
+        ];
+
+        // Function to get random songs
+        function getRandomSongs(count = 6) {
+            const shuffled = [...weddingSongs].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        // Function to display random songs
+        function displayRandomSongs() {
+            const randomSongs = getRandomSongs(6);
+            const songsList = document.getElementById('songsList');
+            songsList.innerHTML = '';
+
+            randomSongs.forEach((song, index) => {
+                const songElement = document.createElement('div');
+                songElement.className = 'song-item';
+                songElement.innerHTML = `
+                    <span class="song-name">🎵 ${song.name}</span>
+                    <span class="song-artist">by ${song.artist}</span>
+                `;
+
+                // Add click to copy to song requests
+                songElement.addEventListener('click', function () {
+                    const songRequestsTextarea = document.querySelectorAll('textarea')[1];
+                    const currentValue = songRequestsTextarea.value;
+                    const newValue = currentValue ? currentValue + ', ' + song.name : song.name;
+                    songRequestsTextarea.value = newValue;
+
+                    // Show feedback
+                    songElement.style.background = 'rgba(212, 175, 55, 0.2)';
+                    setTimeout(() => {
+                        songElement.style.background = 'rgba(11, 19, 37, 0.6)';
+                    }, 1000);
+                });
+
+                songsList.appendChild(songElement);
+            });
+        }
+
+        // Function to get and display a random song suggestion
+        function getRandomSongSuggestion() {
+            const randomIndex = Math.floor(Math.random() * weddingSongs.length);
+            return weddingSongs[randomIndex];
+        }
+
+        // Display random songs on page load (after envelope opens)
+        document.getElementById('invite-card').addEventListener('transitionend', function () {
+            displayRandomSongs();
+        });
+
+        // Initial display of random songs
+        setTimeout(() => {
+            if (document.getElementById('invite-card').classList.contains('show')) {
+                displayRandomSongs();
+            }
+        }, 2000);
+
+        // Refresh songs button
+        document.getElementById('refreshSongsBtn').addEventListener('click', function () {
+            this.style.transform = 'rotate(360deg)';
+            setTimeout(() => {
+                this.style.transform = 'rotate(0deg)';
+            }, 600);
+            displayRandomSongs();
+        });
+
+        // Add random song suggestion to song requests field (on page load)
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+                const randomSong = getRandomSongSuggestion();
+                // Optionally suggest a song - commented out to avoid forcing content
+                // const songRequestsTextarea = document.querySelectorAll('textarea')[1];
+                // if (!songRequestsTextarea.value) {
+                //     songRequestsTextarea.placeholder = `e.g., ${randomSong.name} - ${randomSong.artist}`;
+                // }
+            }, 1500);
+        });
     </script>
 </body>
-</htm
+
+</html>
