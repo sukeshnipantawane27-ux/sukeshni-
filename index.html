@@ -22,6 +22,7 @@
             justify-content: center;
             align-items: center;
             background: linear-gradient(135deg, #0B1325 0%, #1a1f3a 100%);
+            perspective: 1200px; /* enables 3D perspective for child elements */
         }
 
         /* Background Ambient Video Layer */
@@ -109,7 +110,6 @@
         }
 
         @keyframes float {
-
             0%,
             100% {
                 transform: translateY(0px);
@@ -137,10 +137,20 @@
             transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
             border: 2px solid #d4af37;
             color: #f5f5f5;
+            transform-style: preserve-3d; /* enable nested 3D transforms */
+            will-change: transform;
+            backface-visibility: hidden;
         }
 
         #invite-card.show {
             transform: translateY(0);
+        }
+
+        /* Elements that will pop out slightly for 3D effect */
+        .names, .divider, .timeline-container, .countdown-container {
+            transition: transform 0.25s ease;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
         }
 
         /* Custom Royal Gold Scrollbar */
@@ -581,6 +591,21 @@
             margin-bottom: 15px;
         }
 
+        /* Glare overlay for 3D card */
+        .card-glare {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: 12px;
+            mix-blend-mode: overlay;
+            transition: background 0.12s linear, opacity 0.12s linear;
+            opacity: 0.9;
+            z-index: 6;
+        }
+
         .song-item {
             background: rgba(11, 19, 37, 0.6);
             border: 1px solid rgba(212, 175, 55, 0.3);
@@ -750,8 +775,7 @@
 
         <div class="divider"></div>
 
-        <p>Please join us to bless the couple on these auspicious days filled with joy, celebration, and togetherness.
-        </p>
+        <p>Please join us to bless the couple on these auspicious days filled with joy, celebration, and togetherness.</p>
 
         <!-- Itinerary Schedule Stream Track -->
         <div class="timeline-container">
@@ -803,7 +827,7 @@
         <div class="rsvp-section">
             <div class="rsvp-title">📋 RSVP Details</div>
             <div class="rsvp-info">Please fill in your details to confirm your attendance</div>
-
+            
             <form id="rsvpForm">
                 <!-- Name Field -->
                 <div class="form-group">
@@ -882,8 +906,7 @@
                 <!-- Special Requests / Allergies -->
                 <div class="form-group">
                     <label class="form-label">Special Requests / Allergies</label>
-                    <textarea class="form-textarea"
-                        placeholder="Any dietary restrictions, allergies, or special requirements..."></textarea>
+                    <textarea class="form-textarea" placeholder="Any dietary restrictions, allergies, or special requirements..."></textarea>
                 </div>
 
                 <!-- Song Requests -->
@@ -935,14 +958,14 @@
         function openEnvelope() {
             // Add open class to envelope flap
             document.getElementById('flap').classList.add('open');
-
+            
             // Attempt to play music
             music.play().catch(error => {
                 console.log("Audio autoplay prevented. User interaction required for audio.");
                 musicBtn.style.opacity = '0.6';
             });
             isPlaying = true;
-
+            
             // Hide envelope and show invite card
             setTimeout(() => {
                 document.getElementById('envelope-container').style.opacity = '0';
@@ -970,21 +993,21 @@
 
         // High Resolution Main Wedding Event Countdown Engine Loop
         const targetDate = new Date("December 13, 2026 19:00:00").getTime();
-
+        
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = targetDate - now;
-
+            
             if (distance <= 0) {
                 document.querySelector(".countdown-container").innerHTML = "<div class='countdown-title'>✨ The Celebration has Begun! ✨</div><p style='color: #d4af37; margin-top: 10px;'>Thank you for being part of our special day!</p>";
                 return;
             }
-
+            
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
+            
             document.getElementById("days").innerText = days.toString().padStart(2, '0');
             document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
             document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
@@ -996,14 +1019,14 @@
         setInterval(updateCountdown, 1000);
 
         // Handle background video error fallback
-        document.getElementById('bg-video').addEventListener('error', function () {
+        document.getElementById('bg-video').addEventListener('error', function() {
             document.querySelector('.bg-fallback').style.display = 'block';
         });
 
         // RSVP Form Handler
-        document.getElementById('rsvpForm').addEventListener('submit', function (e) {
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
+            
             // Collect form data
             const formData = new FormData(this);
             const rsvpData = {
@@ -1078,14 +1101,14 @@
                     <span class="song-name">🎵 ${song.name}</span>
                     <span class="song-artist">by ${song.artist}</span>
                 `;
-
+                
                 // Add click to copy to song requests
-                songElement.addEventListener('click', function () {
+                songElement.addEventListener('click', function() {
                     const songRequestsTextarea = document.querySelectorAll('textarea')[1];
                     const currentValue = songRequestsTextarea.value;
                     const newValue = currentValue ? currentValue + ', ' + song.name : song.name;
                     songRequestsTextarea.value = newValue;
-
+                    
                     // Show feedback
                     songElement.style.background = 'rgba(212, 175, 55, 0.2)';
                     setTimeout(() => {
@@ -1104,7 +1127,7 @@
         }
 
         // Display random songs on page load (after envelope opens)
-        document.getElementById('invite-card').addEventListener('transitionend', function () {
+        document.getElementById('invite-card').addEventListener('transitionend', function() {
             displayRandomSongs();
         });
 
@@ -1116,7 +1139,7 @@
         }, 2000);
 
         // Refresh songs button
-        document.getElementById('refreshSongsBtn').addEventListener('click', function () {
+        document.getElementById('refreshSongsBtn').addEventListener('click', function() {
             this.style.transform = 'rotate(360deg)';
             setTimeout(() => {
                 this.style.transform = 'rotate(0deg)';
@@ -1125,7 +1148,7 @@
         });
 
         // Add random song suggestion to song requests field (on page load)
-        window.addEventListener('load', function () {
+        window.addEventListener('load', function() {
             setTimeout(() => {
                 const randomSong = getRandomSongSuggestion();
                 // Optionally suggest a song - commented out to avoid forcing content
@@ -1135,7 +1158,210 @@
                 // }
             }, 1500);
         });
+    // 3D Tilt & Glare Effects for Invite Card
+    (function(){
+        const card = document.getElementById('invite-card');
+        if (!card) return;
+
+        // Ensure parent perspective
+        if (card.parentElement && !card.parentElement.style.perspective) {
+            card.parentElement.style.perspective = '1200px';
+        }
+
+        // Basic 3D readiness
+        card.style.transformStyle = 'preserve-3d';
+        card.style.backfaceVisibility = 'hidden';
+
+        // Create glare overlay
+        const glare = document.createElement('div');
+        glare.className = 'card-glare';
+        glare.style.pointerEvents = 'none';
+        glare.style.opacity = '0';
+        card.appendChild(glare);
+
+        // Elements to lift for subtle parallax
+        const namesEl = card.querySelector('.names');
+        const dividerEl = card.querySelector('.divider');
+        const timelineEl = card.querySelector('.timeline-container');
+        const countdownEl = card.querySelector('.countdown-container');
+
+        function onMove(e) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const cx = rect.width / 2;
+            const cy = rect.height / 2;
+            const dx = (x - cx) / cx; // -1 .. 1
+            const dy = (y - cy) / cy; // -1 .. 1
+
+            const rotateY = (dx * 8).toFixed(2); // degrees
+            const rotateX = (-dy * 8).toFixed(2);
+
+            // Apply gentle 3D rotation
+            card.style.transform = `translateZ(0px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+            // Pop-out layers (translateZ) for depth feel
+            if (namesEl) namesEl.style.transform = `translateZ(30px) translateY(${(-dy * 6).toFixed(2)}px)`;
+            if (dividerEl) dividerEl.style.transform = `translateZ(18px)`;
+            if (timelineEl) timelineEl.style.transform = `translateZ(12px)`;
+            if (countdownEl) countdownEl.style.transform = `translateZ(8px)`;
+
+            // Move glare to follow cursor
+            const gx = ((dx + 1) / 2 * 100).toFixed(1);
+            const gy = ((dy + 1) / 2 * 100).toFixed(1);
+            glare.style.background = `radial-gradient(circle at ${gx}% ${gy}%, rgba(255,255,255,0.18), rgba(255,255,255,0.02) 15%, rgba(255,255,255,0) 40%)`;
+            glare.style.opacity = '1';
+        }
+
+        function onEnter() {
+            card.style.transition = 'transform 0.12s linear';
+            glare.style.transition = 'background 0.12s linear, opacity 0.12s linear';
+        }
+
+        function onLeave() {
+            card.style.transition = 'transform 0.6s cubic-bezier(.2,.8,.2,1)';
+            card.style.transform = 'translateZ(0) rotateX(0) rotateY(0)';
+            if (namesEl) namesEl.style.transform = '';
+            if (dividerEl) dividerEl.style.transform = '';
+            if (timelineEl) timelineEl.style.transform = '';
+            if (countdownEl) countdownEl.style.transform = '';
+            glare.style.opacity = '0';
+        }
+
+        // Attach listeners
+        card.addEventListener('mousemove', onMove);
+        card.addEventListener('mouseenter', onEnter);
+        card.addEventListener('mouseleave', onLeave);
+
+        // Accessibility: allow tilt via keyboard focus
+        card.addEventListener('focus', onEnter);
+        card.addEventListener('blur', onLeave);
+    })();
+
+    // Particle shower (hearts / flowers) - 3D-friendly, emoji-based
+    (function(){
+        // Add container and controls
+        const showerContainer = document.createElement('div');
+        showerContainer.id = 'particle-shower';
+        showerContainer.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(showerContainer);
+
+        const controls = document.createElement('div');
+        controls.id = 'particle-controls';
+        controls.innerHTML = `
+            <button id="showerHearts" title="Shower hearts">❤️ Hearts</button>
+            <button id="showerFlowers" title="Shower flowers">🌸 Flowers</button>
+            <button id="stopShower" title="Stop shower">⛔ Stop</button>
+        `;
+        document.body.appendChild(controls);
+
+        // Helper to spawn particles
+        function spawnParticles(type = 'hearts', count = 30) {
+            const emojis = type === 'flowers' ? ['🌸','🌺','💐','🌷'] : ['❤️','💖','💕','💘'];
+            const maxZ = 220; // px depth
+            const minZ = -40; // some go behind the plane
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('span');
+                p.className = 'particle ' + (type === 'flowers' ? 'flower' : 'heart');
+                p.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+
+                // Randomize properties
+                const left = Math.random() * 100; // percent
+                const z = Math.floor(Math.random() * (maxZ - minZ) + minZ); // px
+                const startR = (Math.random() * 360 - 180).toFixed(1) + 'deg';
+                const endR = (Math.random() * 720 - 360).toFixed(1) + 'deg';
+                const duration = (Math.random() * 3 + 3).toFixed(2); // 3 - 6s
+                const size = Math.floor(Math.random() * 20 + 18); // 18 - 38px
+
+                p.style.left = left + '%';
+                p.style.setProperty('--z', z + 'px');
+                p.style.setProperty('--startR', startR);
+                p.style.setProperty('--endR', endR);
+                p.style.setProperty('--duration', duration + 's');
+                p.style.setProperty('--size', size + 'px');
+
+                showerContainer.appendChild(p);
+
+                // Cleanup after animation
+                const removeAfter = (parseFloat(duration) + 0.6) * 1000;
+                setTimeout(() => {
+                    if (p && p.parentElement) p.parentElement.removeChild(p);
+                }, removeAfter);
+            }
+        }
+
+        // Public controls
+        document.getElementById('showerHearts').addEventListener('click', () => spawnParticles('hearts', 36));
+        document.getElementById('showerFlowers').addEventListener('click', () => spawnParticles('flowers', 36));
+        document.getElementById('stopShower').addEventListener('click', () => {
+            // Remove all particles
+            const all = document.querySelectorAll('#particle-shower .particle');
+            all.forEach(el => el.remove());
+        });
+
+        // Optional: auto-trigger a small shower when envelope opens
+        document.getElementById('invite-card').addEventListener('transitionend', function() {
+            // small celebratory burst
+            setTimeout(() => spawnParticles('flowers', 16), 400);
+        });
+
+    })();
+
     </script>
+
+    <style>
+    /* Particle shower styles */
+    #particle-controls {
+        position: fixed;
+        right: 16px;
+        bottom: 18px;
+        display: flex;
+        gap: 8px;
+        z-index: 9999;
+        background: rgba(255,255,255,0.06);
+        backdrop-filter: blur(6px);
+        border-radius: 10px;
+        padding: 6px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+        align-items: center;
+    }
+    #particle-controls button {
+        border: none;
+        background: transparent;
+        color: #fff;
+        padding: 6px 10px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: transform 0.12s ease, background 0.12s ease;
+    }
+    #particle-controls button:hover { transform: translateY(-3px); background: rgba(255,255,255,0.06); }
+
+    #particle-shower { position: fixed; inset: 0; pointer-events: none; z-index: 9998; overflow: visible; transform-style: preserve-3d; }
+    .particle { position: fixed; top: -18vh; font-size: var(--size, 26px); will-change: transform, opacity; user-select: none; pointer-events: none; backface-visibility: hidden; text-shadow: 0 6px 18px rgba(0,0,0,0.35); }
+
+    .particle.heart { filter: drop-shadow(0 6px 12px rgba(200,20,45,0.35)); }
+    .particle.flower { filter: drop-shadow(0 6px 12px rgba(80,20,120,0.28)); }
+
+    @keyframes particleFall {
+        from {
+            transform: translateZ(var(--z)) translateY(0vh) rotate(var(--startR));
+            opacity: 1;
+        }
+        to {
+            transform: translateZ(var(--z)) translateY(130vh) rotate(var(--endR));
+            opacity: 0;
+        }
+    }
+    .particle { animation-name: particleFall; animation-timing-function: linear; animation-fill-mode: forwards; animation-duration: var(--duration, 4s); }
+
+    /* Reduce or disable on small screens to save CPU */
+    @media (max-width: 640px) {
+        #particle-controls { right: 10px; bottom: 10px; }
+        .particle { display: none; }
+    }
+    </style>
+
 </body>
 
 </html>
