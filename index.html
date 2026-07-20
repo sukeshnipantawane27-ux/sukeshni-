@@ -109,6 +109,7 @@
         }
 
         @keyframes float {
+
             0%,
             100% {
                 transform: translateY(0px);
@@ -749,7 +750,8 @@
 
         <div class="divider"></div>
 
-        <p>Please join us to bless the couple on these auspicious days filled with joy, celebration, and togetherness.</p>
+        <p>Please join us to bless the couple on these auspicious days filled with joy, celebration, and togetherness.
+        </p>
 
         <!-- Itinerary Schedule Stream Track -->
         <div class="timeline-container">
@@ -801,7 +803,7 @@
         <div class="rsvp-section">
             <div class="rsvp-title">📋 RSVP Details</div>
             <div class="rsvp-info">Please fill in your details to confirm your attendance</div>
-            
+
             <form id="rsvpForm">
                 <!-- Name Field -->
                 <div class="form-group">
@@ -880,7 +882,8 @@
                 <!-- Special Requests / Allergies -->
                 <div class="form-group">
                     <label class="form-label">Special Requests / Allergies</label>
-                    <textarea class="form-textarea" placeholder="Any dietary restrictions, allergies, or special requirements..."></textarea>
+                    <textarea class="form-textarea"
+                        placeholder="Any dietary restrictions, allergies, or special requirements..."></textarea>
                 </div>
 
                 <!-- Song Requests -->
@@ -932,14 +935,14 @@
         function openEnvelope() {
             // Add open class to envelope flap
             document.getElementById('flap').classList.add('open');
-            
+
             // Attempt to play music
             music.play().catch(error => {
                 console.log("Audio autoplay prevented. User interaction required for audio.");
                 musicBtn.style.opacity = '0.6';
             });
             isPlaying = true;
-            
+
             // Hide envelope and show invite card
             setTimeout(() => {
                 document.getElementById('envelope-container').style.opacity = '0';
@@ -967,21 +970,21 @@
 
         // High Resolution Main Wedding Event Countdown Engine Loop
         const targetDate = new Date("December 13, 2026 19:00:00").getTime();
-        
+
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = targetDate - now;
-            
+
             if (distance <= 0) {
                 document.querySelector(".countdown-container").innerHTML = "<div class='countdown-title'>✨ The Celebration has Begun! ✨</div><p style='color: #d4af37; margin-top: 10px;'>Thank you for being part of our special day!</p>";
                 return;
             }
-            
+
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
+
             document.getElementById("days").innerText = days.toString().padStart(2, '0');
             document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
             document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
@@ -993,14 +996,14 @@
         setInterval(updateCountdown, 1000);
 
         // Handle background video error fallback
-        document.getElementById('bg-video').addEventListener('error', function() {
+        document.getElementById('bg-video').addEventListener('error', function () {
             document.querySelector('.bg-fallback').style.display = 'block';
         });
 
         // RSVP Form Handler
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+        document.getElementById('rsvpForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             // Collect form data
             const formData = new FormData(this);
             const rsvpData = {
@@ -1075,14 +1078,14 @@
                     <span class="song-name">🎵 ${song.name}</span>
                     <span class="song-artist">by ${song.artist}</span>
                 `;
-                
+
                 // Add click to copy to song requests
-                songElement.addEventListener('click', function() {
+                songElement.addEventListener('click', function () {
                     const songRequestsTextarea = document.querySelectorAll('textarea')[1];
                     const currentValue = songRequestsTextarea.value;
                     const newValue = currentValue ? currentValue + ', ' + song.name : song.name;
                     songRequestsTextarea.value = newValue;
-                    
+
                     // Show feedback
                     songElement.style.background = 'rgba(212, 175, 55, 0.2)';
                     setTimeout(() => {
@@ -1101,7 +1104,7 @@
         }
 
         // Display random songs on page load (after envelope opens)
-        document.getElementById('invite-card').addEventListener('transitionend', function() {
+        document.getElementById('invite-card').addEventListener('transitionend', function () {
             displayRandomSongs();
         });
 
@@ -1113,7 +1116,7 @@
         }, 2000);
 
         // Refresh songs button
-        document.getElementById('refreshSongsBtn').addEventListener('click', function() {
+        document.getElementById('refreshSongsBtn').addEventListener('click', function () {
             this.style.transform = 'rotate(360deg)';
             setTimeout(() => {
                 this.style.transform = 'rotate(0deg)';
@@ -1122,7 +1125,7 @@
         });
 
         // Add random song suggestion to song requests field (on page load)
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             setTimeout(() => {
                 const randomSong = getRandomSongSuggestion();
                 // Optionally suggest a song - commented out to avoid forcing content
